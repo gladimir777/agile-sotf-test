@@ -1,52 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 import axios from "axios";
 import SuperHeroes from "./components/SuperHeroes";
 import Alert from "./components/Alert";
 import Search from "./components/Search";
 import { useSemiPersistentState } from "./utilHooks/persistantState";
+import { heroesReducer } from "./components/heroeReducer";
 import "./App.css";
 
 const API_ENDPOINT = `http://157.245.138.232:9091/api/v1/test/superheroes/?puedeVolar =true`;
 
 function App() {
   const [searchTerm, setSearchTerm] = useSemiPersistentState("search", "");
-
-  const heroesReducer = (state, action) => {
-    switch (action.type) {
-      case "HEROES_FETCH_INIT":
-        return {
-          ...state,
-          isLoading: true,
-          isError: false,
-          msg: "",
-        };
-      case "HEROES_FETCH_SUCCESS":
-        return {
-          ...state,
-          isLoading: false,
-          isError: false,
-          data: action.payload,
-          msg: "",
-        };
-      case "HEROES_FETCH_FAILURE":
-        return {
-          ...state,
-          isLoading: false,
-          isError: true,
-          msg: "",
-        };
-
-      case "HEROES_SEARCH":
-        return {
-          ...state,
-          data: state.data.filter((item) =>
-            item.nombre.toLowerCase().includes(action.payload.toLowerCase())
-          ),
-        };
-      default:
-        return state;
-    }
-  };
 
   const [heroes, dispatchHeroes] = React.useReducer(heroesReducer, {
     data: [],
@@ -55,7 +19,7 @@ function App() {
     msg: "",
   });
 
-  const handleFetchHeroes = React.useCallback(async () => {
+  const handleFetchHeroes = useCallback(async () => {
     dispatchHeroes({ type: "HEROES_FETCH_INIT" });
 
     try {
