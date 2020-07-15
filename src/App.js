@@ -7,7 +7,7 @@ import { useSemiPersistentState } from "./utilHooks/persistantState";
 import { heroesReducer } from "./components/heroeReducer";
 import "./App.css";
 
-const API_ENDPOINT = `http://157.245.138.232:9091/api/v1/test/superheroes/?puedeVolar =true`;
+import { API_ENDPOINT } from "../src/api/endpoint";
 
 function App() {
   const [searchTerm, setSearchTerm] = useSemiPersistentState("search", "");
