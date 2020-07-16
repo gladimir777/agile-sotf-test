@@ -37,9 +37,12 @@ function App() {
     handleFetchHeroes();
   }, [handleFetchHeroes]);
 
+  useEffect(() => {
+    dispatchHeroes({ type: "HEROES_SEARCH", payload: searchTerm });
+  }, [searchTerm]);
+
   const handleSearchInput = (event) => {
     setSearchTerm(event.target.value);
-    dispatchHeroes({ type: "HEROES_SEARCH", payload: event.target.value });
   };
 
   return (

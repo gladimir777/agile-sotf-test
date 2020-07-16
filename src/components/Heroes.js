@@ -3,8 +3,8 @@ import Heroe from "./Heroe";
 
 function Heroes({ heroes }) {
   return (
-    <div class="heroes-wrapper">
-      <div class="heroes-container">
+    <div className="heroes-wrapper">
+      <div className="heroes-container">
         {heroes.map((item) => (
           <Heroe key={item.id} item={item} />
         ))}
