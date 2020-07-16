@@ -54,7 +54,7 @@ function App() {
     <div className="app">
       <Alert error={heroes.isError} msg={heroes.msg} />
       <Search onSearch={handleSearchInput} searchTerm={searchTerm} />
-      <SuperHeroes heroes={heroes.data} />
+      <SuperHeroes heroes={heroes.data} isLoading={heroes.isLoading} />
     </div>
   );
 }
