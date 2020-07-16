@@ -23,7 +23,7 @@ function App() {
     dispatchHeroes({ type: "HEROES_FETCH_INIT" });
 
     try {
-      const result = await axios.get(API_ENDPOINT);
+      const result = await axios.get(`${API_ENDPOINT}?puedeVolar =true`);
       dispatchHeroes({
         type: "HEROES_FETCH_SUCCESS",
         payload: result.data.data,

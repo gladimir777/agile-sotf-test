@@ -8,29 +8,34 @@ export const heroesReducer = (state, action) => {
         msg: "",
       };
     case "HEROES_FETCH_SUCCESS":
+      let text = "";
+      if (action.payload.length > 0) {
+        text = "No heroe found";
+      }
       return {
         ...state,
         isLoading: false,
         isError: false,
         data: action.payload,
-        msg: "",
+        msg: text,
       };
+
     case "HEROES_FETCH_FAILURE":
       return {
         ...state,
         data: [],
         isLoading: false,
         isError: true,
-        msg: "",
+        msg: "Someting went wrong!",
       };
 
     case "HEROES_SEARCH":
-      const t = state.data.filter((item) =>
+      const res = state.data.filter((item) =>
         item.nombre.toLowerCase().includes(action.payload.toLowerCase())
       );
       return {
         ...state,
-        data: t,
+        data: res,
       };
     default:
       return state;

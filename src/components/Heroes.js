@@ -7,8 +7,8 @@ function Heroes({ heroes, isLoading }) {
     <div className="heroes-wrapper">
       {isLoading && <Loading className="loader" />}
       <div className="heroes-container">
-        {heroes.map((item) => (
-          <Heroe key={item.id} item={item} />
+        {heroes.map((item, index) => (
+          <Heroe key={index} item={item} />
         ))}
       </div>
     </div>
