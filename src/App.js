@@ -38,7 +38,12 @@ function App() {
   }, [handleFetchHeroes]);
 
   useEffect(() => {
+    if (!searchTerm) {
+      handleFetchHeroes();
+      return;
+    }
     dispatchHeroes({ type: "HEROES_SEARCH", payload: searchTerm });
+    // eslint-disable-next-line
   }, [searchTerm]);
 
   const handleSearchInput = (event) => {

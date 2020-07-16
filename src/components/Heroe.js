@@ -4,7 +4,7 @@ function Heroe({ item }) {
   return (
     <div className="hero-container">
       <div className="avatar">
-        <img src={item.avatarURL} alt="heroe-img" />
+        <img src={item.avatarURL} alt="" />
       </div>
 
       <div className="name-container">
