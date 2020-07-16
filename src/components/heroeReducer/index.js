@@ -18,17 +18,19 @@ export const heroesReducer = (state, action) => {
     case "HEROES_FETCH_FAILURE":
       return {
         ...state,
+        data: [],
         isLoading: false,
         isError: true,
         msg: "",
       };
 
     case "HEROES_SEARCH":
+      const t = state.data.filter((item) =>
+        item.nombre.toLowerCase().includes(action.payload.toLowerCase())
+      );
       return {
         ...state,
-        data: state.data.filter((item) =>
-          item.nombre.toLowerCase().includes(action.payload.toLowerCase())
-        ),
+        data: t,
       };
     default:
       return state;
